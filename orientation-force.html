@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>重力感应</title>
+</head>
+
+<body>
+  <script>
+    // 首先是为浏览器绑定deviceorientation事件和处理程序。
+    if (window.DeviceOrientationEvent) {
+      window.addEventListener('deviceorientation', DeviceOrientationHandler, false);
+    } else {
+      alert("您的浏览器不支持DeviceOrientation");
+    }
+    // 然后在事件处理程序中处理相应的动作
+    function DeviceOrientationHandler(event) {
+      var alpha = event.alpha,
+        beta = event.beta,
+        gamma = event.gamma;
+
+      if (alpha != null || beta != null || gamma != null) {
+        dataContainerOrientation.innerHTML = "alpha:" + alpha + "<br />beta:" + beta + "<br />gamma:" + gamma;
+        //判断屏幕方向
+        var html = "";
+        if (Math.abs(gamma) < GAMMA_MIN && Math.abs(beta) > BETA_MAX) {
+          html = "屏幕方向：Portrait";
+        }
+
+        if (Math.abs(beta) < BETA_MIN && Math.abs(gamma) > GAMMA_MAX) {
+          html = "屏幕方向：Landscape";
+        }
+
+        var gamma_html = "";
+        if (gamma > 0) {
+          gamma_html = "向右倾斜";
+        } else {
+          gamma_html = "向左倾斜";
+        }
+        html += "<br />" + gamma_html
+        stage.innerHTML = html;
+      } else {
+        dataContainerOrientation.innerHTML = "当前浏览器不支持DeviceOrientation";
+      }
+    }
+  </script>
+</body>
+
+</html>

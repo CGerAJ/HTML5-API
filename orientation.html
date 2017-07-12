@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>手机摇一摇</title>
+</head>
+
+<body>
+  <script>
+    window.onload = function() {
+
+      function Shake(threshold, callback) {
+        this.SHAKE_THRESHOLD = threshold ? threshold : 2000; //定义阈值
+        this.last_update = 0;
+        this.x = this.y = this.z = this.last_x = this.last_y = this.last_z = 0;
+        this.init = function() {
+          if (window.DeviceMotionEvent) {
+            window.addEventListener('devicemotion', this.deviceMotionHandler, false);
+          } else {
+            alert('您的浏览器不支持DeviceMotion');
+          }
+        };
+        var that = this;
+        this.deviceMotionHandler = function(eventData) {
+          var acceleration = eventData.accelerationIncludingGravity;
+          var curTime = new Date().getTime();
+          if ((curTime - that.last_update) > 100) {
+            var diffTime = curTime - that.last_update;
+            that.last_update = curTime;
+            that.x = acceleration.x;
+            that.y = acceleration.y;
+            that.z = acceleration.z;
+            var speed = Math.abs(that.x + that.y + that.z - that.last_x - that.last_y - that.last_z) / diffTime * 10000;
+            if (speed > that.SHAKE_THRESHOLD) {
+              if (window.console && console.log) {
+                console.log("shaked");
+              }
+              if (callback != undefined) {
+                callback(that);
+              }
+            }
+            that.last_x = that.x;
+            that.last_y = that.y;
+            that.last_z = that.z;
+          }
+        }
+      };
+
+
+      var shake1 = new Shake(2000, function(obj) {
+        alert("摇一摇给你个妹子");
+        var r = document.getElementById("result");
+        r.innerHTML = "x:" + obj.x　 + "";
+        r.innerHTML += "y:" + obj.y　 + "";
+        r.innerHTML += "z:" + obj.z　 + "";
+      });
+      shake1.init();
+    };
+  </script>
+  <div id="result"></div>
+</body>
+
+</html>
