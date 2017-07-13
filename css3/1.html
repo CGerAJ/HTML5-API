@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>属性选择器</title>
+  <style>
+    input[type="text"] {
+      color: orangered;
+    }
+    
+    input[type=button] {
+      background: #000;
+      color: #fff;
+    }
+    
+    input[placeholder] {
+      background: #000;
+      color: #fff;
+    }
+    
+    ul li[class~=aa] {
+      background: green;
+      color: green;
+    }
+    
+    div~div {
+      border: 2px solid #000;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div>
+    <br>
+    <input type="button" value="确定">
+    <br>
+
+    <div>444444</div>
+    <div>11111
+      <div>222222</div>
+      <div>333333</div>
+    </div>
+  </div>
+  <ul>
+    <li class="aa">1111</li>
+    <li class="bb">1111</li>
+    <li class="aa cc">1111</li>
+    <li class="cc">1111</li>
+
+  </ul>
+
+  <a href="">1111</a>
+  <input type="text">
+  <br>
+  <input type="button" value="确定">
+  <br>
+  <input type="button" value="确定">
+  <br>
+  <input type="number" placeholder="请输入数字">
+  <br>
+  <input type="email" placeholder="请输入邮箱">
+  <br>
+  <input type="tel" placeholder="请输入电话号码">
+  <br>
+  <select name="" id="" style=";text-align: center;width: 100%">
+    <option value="">11111111</option>
+    <option value="">222222</option>
+    <option value="">3333333</option>
+    <option value="">4444444</option>
+    <option value="">5555555</option>
+  </select>
+
+
+</body>
+
+</html>

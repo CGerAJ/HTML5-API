@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+  <title>测试定位</title>
+  <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=mFSDNnwMhViMfU1NPYf8Kxo23TdxgY3f"></script>
+</head>
+
+<body>
+  <script type="text/javascript">
+    /**
+     * [百度地图API调用]
+     * @param  {[type]} cityCode [cityCode为1 返回城市名称 cityCode为空 返回具体地址]
+     * @return {[type]}      [description]
+     */
+    /*
+    var city = {
+      getCityName: function(cityCode) {
+        var geolocation = new BMap.Geolocation();
+        var city = cityCode || '';
+        // 创建地理编码实例
+        var myGeo = new BMap.Geocoder();
+        geolocation.getCurrentPosition(function(r) {
+          if (this.getStatus() == BMAP_STATUS_SUCCESS) {
+            var pt = r.point;
+            // 根据坐标得到地址描述
+            myGeo.getLocation(pt, function(result) {
+              if (result) {
+                var addComp = result.addressComponents;
+                if (city === 1) {
+                  var promise = new Promise(function(resolve, reject) {
+                    if (addComp) {
+                      resolve(addComp.city);
+                    } else {
+                      reject(error);
+                    }
+                  });
+                  Promise.resolve(addComp.city).then(function(value) {
+
+                    console.log(2121 + value);
+
+                  });
+                } else {
+                  var promise = new Promise(function(resolve, reject) {
+                    if (addComp) {
+                      resolve(addComp.province + addComp.city + addComp.district + addComp.street + addComp.streetNumber);
+                    } else {
+                      reject(error);
+                    }
+                  });
+                  Promise.resolve(addComp.province + addComp.city + addComp.district + addComp.street + addComp.streetNumber).then(function(value) {
+
+                    console.log(2121 + value);
+
+                  });
+                }
+              }
+            });
+          }
+        });
+      }
+    }
+    */
+    "use strict";
+    var city = {
+      getCityName: function getCityName(a) {
+        var b = new BMap.Geolocation(),
+          d = new BMap.Geocoder();
+        b.getCurrentPosition(function(e) {
+          if (this.getStatus() == BMAP_STATUS_SUCCESS) {
+            var f = e.point;
+            d.getLocation(f, function(g) {
+              if (g) {
+                var h = g.addressComponents;
+                if (1 === (a || "")) {
+                  var i = new Promise(function(j, k) {
+                    h ? j(h.city) : k(error);
+                  });
+                  Promise.resolve(h.city).then(function(j) {
+                    console.log(2121 + j);
+                  });
+                } else {
+                  var i = new Promise(function(j, k) {
+                    h
+                      ?
+                      j(
+                        h.province +
+                        h.city +
+                        h.district +
+                        h.street +
+                        h.streetNumber
+                      ) :
+                      k(error);
+                  });
+                  Promise.resolve(
+                    h.province + h.city + h.district + h.street + h.streetNumber
+                  ).then(function(j) {
+                    console.log(2121 + j);
+                  });
+                }
+              }
+            });
+          }
+        });
+      }
+    };
+
+    var mapCity = city.getCityName(1);
+
+  </script>
+</body>
+
+</html>

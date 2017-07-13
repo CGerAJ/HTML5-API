@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>清除浮动</title>
+  <style>
+    * {
+      text-align: center;
+      padding: 0;
+      margin: 0;
+    }
+    
+    ul {
+      background: #00c6ff;
+      background: -webkit-linear-gradient(to right, #0072ff, #00c6ff);
+      background: linear-gradient(to right, #0072ff, #00c6ff);
+    }
+    
+    li {
+      width: 100%;
+      height: 200px;
+      list-style: none;
+    }
+    
+    .fl {
+      float: left;
+    }
+    
+    .w2 {
+      width: 50%;
+    }
+    
+    .clearfix:after {
+      content: ".";
+      display: block;
+      height: 0;
+      clear: both;
+      visibility: hidden;
+    }
+    
+    .clearfix {
+      /* 触发 hasLayout */
+      zoom: 1;
+    }
+    
+    .ovflow {
+      overflow: auto;
+    }
+    
+    .news {
+      background-color: gray;
+      border: solid 1px black;
+    }
+    
+    .news img {
+      float: left;
+    }
+    
+    .news p {
+      float: right;
+    }
+    
+    .clear {
+      clear: both;
+    }
+
+  </style>
+</head>
+
+<body>
+  <h2>demo1 伪类元素清除浮动</h2>
+  <ul class="clearfix">
+    <li class="w2 fl">11111</li>
+    <li class="w2 fl">222222</li>
+  </ul>
+  <hr>
+  <h2>demo2 ovflow auto hidden清除浮动</h2>
+  <ul class="ovflow">
+    <li class="w2 fl">11111</li>
+    <li class="w2 fl">222222</li>
+  </ul>
+  <hr>
+  <h2>demo3 clear:both</h2>
+  <div class="news">
+    <img src="https://adman.henghost.com/data/updata/20170815102314.gif" />
+    <p>some text</p>
+    <div class="clear"></div>
+  </div>
+</body>
+
+</html>
+
+
+
+

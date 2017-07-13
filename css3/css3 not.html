@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>not 选择器示例</title>
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_385025_e5fjnos3j7dxtj4i.css">
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+    
+    nav {
+      width: 100%;
+      overflow: hidden;
+    }
+    
+    nav li {
+      text-align: center;
+      width: 100px;
+      padding: 20px;
+      float: left;
+      list-style: none;
+      position: relative;
+    }
+    
+    nav li:after {
+      content: "|";
+      color: red;
+      position: absolute;
+      right: 0;
+      /*transform: scale(1.2);*/
+    }
+    
+    nav li:nth-last-of-type(1):after {
+      height: 0;
+      visibility: hidden;
+    }
+    
+    ul li {
+      height: 50px;
+      line-height: 50px;
+      color: #fff;
+    }
+    
+    ul li:nth-of-type(even) {
+      background: #f857a6;
+      background: -webkit-linear-gradient(to right, #ff5858, #f857a6);
+      background: linear-gradient(to right, #ff5858, #f857a6);
+    }
+    
+    ul li:nth-of-type(odd) {
+      background: #FF4E50;
+      background: -webkit-linear-gradient(to right, #F9D423, #FF4E50);
+      background: linear-gradient(to right, #F9D423, #FF4E50);
+    }
+    /*    从第一行开始算起 每隔4个（包含第四个）*/
+    
+    ul li:nth-child(3n+1) {
+      color: #000;
+    }
+    /*从第一行开始算起 每隔4个（包含第四个）*/
+    /*
+ ul li:nth-child(4n+2) { color: #000; }
+*/
+
+  </style>
+</head>
+
+<body>
+  <h2>not选择（JD导航条）</h2>
+  <nav>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+  </nav>
+  <br>
+  <hr>
+  <h2>css3隔行变色</h2>
+
+  <ul>
+    <li>11111</li>
+    <li>22222</li>
+    <li>33333</li>
+    <li>44444</li>
+    <li>55555</li>
+    <li>66666</li>
+    <li>77777</li>
+    <li>88888</li>
+    <li>99999</li>
+    <li>00000</li>
+  </ul>
+
+
+
+
+</body>
+
+</html>

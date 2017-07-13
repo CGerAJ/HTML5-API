@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Page Visibility API</title>
+</head>
+
+<body>
+  <video id="video" autoplay="autoplay" loop="loop" src="http://www.w3school.com.cn/example/html5/mov_bbb.mp4"></video>
+  <script>
+    var video = document.getElementById('video');
+    var Prefix = null;
+    getHidden();
+    //获取当前浏览器的hidden属性
+    function getHidden() {
+      ['webkit', 'ms', 'moz', 'o'].forEach(function(prefix) {
+        if ((prefix + 'Hidden') in document) {
+          Prefix = prefix;
+        }
+      });
+      if (Prefix == null) {
+        alert('你的浏览器不支持Page Visibility API');
+      }
+    }
+
+    //为visibilitychange事件绑定处理程序
+    document.addEventListener(Prefix + 'visibilitychange', handleVisibilityChange, false);
+
+    function handleVisibilityChange() {
+      switch (document.hidden) {
+        //返回hidden = true，页面不可见
+        case true:
+          video.pause();
+          break;
+          //返回hidden = false，页面可见
+        case false:
+          video.play();
+          break;
+      }
+    }
+  </script>
+</body>
+
+</html>

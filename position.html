@@ -1,48 +1,80 @@
-<!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    <p id="demo">点击按钮获取您当前坐标（可能需要比较长的时间获取）：</p>
-    <button onclick="getLocation()">点我</button>
-    <div id="mapholder"></div>
-    <script>
-      var x = document.getElementById("demo");
 
-      function getLocation() {
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(showPosition, showError);
-        } else {
-          x.innerHTML = "该浏览器不支持获取地理位置。";
+<head>
+  <meta charset="UTF-8" />
+  <title>js geolocation 定位当前城市</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+  <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=mFSDNnwMhViMfU1NPYf8Kxo23TdxgY3f"></script>
+  <script type="text/javascript">
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+
+        function(position) {
+          show_msg(position);
+        },
+
+        function(err) {
+
+          switch (error.code) {
+            case 0:
+              alert("尝试获取您的位置信息时发生错误：" + error.message);
+              break;
+            case 1:
+              alert("用户拒绝了获取位置信息请求。");
+              break;
+            case 2:
+              alert("浏览器无法获取您的位置信息：" + error.message);
+              break;
+            case 3:
+              alert("获取您位置信息超时。");
+              break;
+          }
         }
-      }
+      )
+    } else {
 
-      function showPosition(position) {
-        var latlon = position.coords.latitude + "," + position.coords.longitude;
+      alert('您当前使用的浏览器不支持Geolocation服务');
 
-        var img_url = "http://maps.googleapis.com/maps/api/staticmap?center=" +
-          latlon + "&zoom=14&size=400x300&sensor=false";
-        document.getElementById("mapholder").innerHTML = "<img src='" + img_url + "'>";
-      }
+    }
 
-      function showError(error) {
-        switch (error.code) {
-          case error.PERMISSION_DENIED:
-            x.innerHTML = "用户拒绝对获取地理位置的请求。"
-            break;
-          case error.POSITION_UNAVAILABLE:
-            x.innerHTML = "位置信息是不可用的。"
-            break;
-          case error.TIMEOUT:
-            x.innerHTML = "请求用户地理位置超时。"
-            break;
-          case error.UNKNOWN_ERROR:
-            x.innerHTML = "未知错误。"
-            break;
-        }
+
+    function show_msg(position) {
+      var lat = position.coords.latitude;
+      var lng = position.coords.longitude;
+      console.log(position)
+      alert("您所在的位置： 经度" + lat + "，纬度" + lng);
+
+      if (typeof position.address != "undefined") {
+        var country = position.address.country;
+        var province = position.address.region;
+        var city = position.address.city;
+        alert(' 您位于 ' + country + province + '省' + city + '市');
+      } else {
+        // 转换经纬度
+
+        //地图
+
+
+        var map = new BMap.Map("allmap");
+        var point = new BMap.Point(116.017637, 37.957109);
+        var gc = new BMap.Geocoder();
+        gc.getLocation(point, function(rs) {
+          alert(rs.sematic_description);
+          var addComp = rs.addressComponents;
+          var mapAddress = addComp.province + addComp.city + addComp.district +
+            addComp.street + addComp.streetNumber;
+        });
+
       }
-    </script>
-  </body>
+    }
+
+  </script>
+</head>
+
+<body>
+  <p id="geo_loc">
+    <p>
+</body>
+
 </html>
