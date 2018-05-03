@@ -4,7 +4,7 @@
 - [HTML5 orientation API 摇一摇Demo](orientation.html)
 - [HTML5 orientation-force重力感应 API](orientation-force.html)
 - [HTML5 position地理定位 API](position.html)
-- [HTML5 Page Visibility  API](Page Visibility API.html)
+- [HTML5 Page Visibility API](Page Visibility API.html)
 
 
 ## CSS3 ##
