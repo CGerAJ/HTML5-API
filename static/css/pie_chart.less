@@ -1,0 +1,99 @@
+@01: yellow;
+@02: black;
+/**
+    原理
+    1.设置内圆
+    2.裁切成一半
+    3.设置border-radius: 50%; 形成半圆
+    4.设置内圆角度(关键角度 没有角度是无法裁切到的)
+    5.设置外圆裁切 这个时候可以得到两个裁切元素的交集 就得到了60度的圆弧型
+**/
+
+.warning {
+    background-color: #ffffff;
+    width: 100%;
+    position: relative;
+    top: 200px;
+}
+
+.warning-wapper {
+    position: relative;
+    left: 0;
+    right: 0;
+    top: 1em;
+    width: 12.5em;
+    height: 12.5em;
+    margin: 0 auto;
+    transform: rotate(60deg);
+}
+
+#warning1 {
+    z-index: 1;
+    .bing {
+        background-color: @01;
+        border-color: @01;
+        transform: rotate(60deg);
+    }
+}
+
+#warning2 {
+    transform: rotate(60deg);
+    .bing {
+        background-color: @02;
+        border-color: @02;
+        transform: rotate(60deg);
+    }
+}
+
+#warning3 {
+    transform: rotate(120deg);
+    .bing {
+        background-color: @01;
+        border-color: @01;
+        transform: rotate(60deg);
+    }
+}
+
+#warning4 {
+    transform: rotate(180deg);
+    .bing {
+        background-color: @02;
+        border-color: @02;
+        transform: rotate(60deg);
+    }
+}
+
+#warning5 {
+    transform: rotate(240deg);
+    .bing {
+        background-color: @01;
+        border-color: @01;
+        transform: rotate(60deg);
+    }
+}
+
+#warning6 {
+    transform: rotate(300deg);
+    .bing {
+        background-color: @02;
+        border-color: @02;
+        transform: rotate(60deg);
+    }
+}
+
+.part {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    clip: rect(0em, 12.5em, 12.5em, 6.25em);
+}
+
+.bing {
+    position: absolute;
+    width: 12.5em;
+    height: 12.5em;
+    clip: rect(0px, 6.25em, 12.5em, 0px);
+    -moz-border-radius: 6.25em;
+    -webkit-border-radius: 6.25em;
+    border-radius: 6.25em;
+}

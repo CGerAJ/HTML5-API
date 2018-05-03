@@ -1,0 +1,44 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head runat="server">
+    <title>无标题页</title>
+    <script src="https://cdn.bootcss.com/jquery/2.2.2/jquery.js"></script>
+    <script type="text/javascript">
+    jQuery(function($) {
+        $("input[name='checkbox']").change(function() {
+            var arr = [];
+            $("input[name='checkbox']:checkbox:checked").each(function() {
+                arr.push($(this).val())
+                console.log(arr)
+            })
+           
+        })
+    })
+    </script>
+</head>
+
+<body>
+    <form id="form1" runat="server">
+        <div>
+            
+            <input type="checkbox" name="checkbox" value="01"> checkbox1
+            <br>
+            <input type="checkbox" name="checkbox" value="02"> checkbox2
+            <br>
+            <input type="checkbox" name="checkbox" value="03"> checkbox3
+            <br>
+            <input type="checkbox" name="checkbox" value="04"> checkbox4
+            <br>
+            <input type="checkbox" name="checkbox" value="05"> checkbox5
+            <br>
+            <input type="checkbox" name="checkbox" value="06"> checkbox6
+            <br>
+            <input type="checkbox" name="checkbox" value="07"> checkbox7
+            <br>
+            <input type="checkbox" name="checkbox" value="08"> checkbox8
+            <br>
+        </div>
+    </form>
+</body>
+
+</html>
